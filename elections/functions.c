@@ -1,17 +1,29 @@
 #include "functions.h"
-#include <stdlib.h>
-#include <stdio.h>
-int ajouter (char * filename, election E)
+
+void saisir(election* e){
+printf("donner la date de l'élection");
+scanf("%d %d %d", &(e->dateElect.jour), &(e->dateElect.mois), &(e->dateElect.annee));
+printf("donner l'identifiant de l'élection");
+scanf("%d", &e->idEl);
+printf("donner le nombre d'habitants");
+scanf("%d", &e->nbH);
+printf("donner le nombre de conseillers");
+scanf("%d", &e->nbC);
+printf("donner la municipalité");
+scanf("%s", e->muni);
+}
+int ajouter (char filename[], election E)
 {
-  FILE * f=fopen(filename,"a");
+  FILE* f=fopen(filename,"a");
 if(f!=NULL)
 {
-fprintf(f,"%d %d %d %d %d %d  %s\n",E.idEl ,E.dateElect.jour,E.dateElect.mois,E.dateElect.annee,E.nbH,E.nbC ,E.muni );
+fprintf(f,"%d %d-%d-%d %d %d  %s\n",E.idEl ,E.dateElect.jour,E.dateElect.mois,E.dateElect.annee,E.nbH,E.nbC ,E.muni );
 fclose(f);
 return 1;
 }
 else return 0;
 }
+/*
 int modifier(char * filename,int idEl,election new)
 { FILE *f1=NULL, *f2=NULL;
 f1 =fopen(filename, "r");
@@ -85,4 +97,4 @@ fclose(f1);
 if(test==-1)
  E.idEl=-1;
 return E;
-}
+}*/
